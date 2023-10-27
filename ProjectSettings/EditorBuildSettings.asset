@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: db8bce4f4ed68d3488abab588be4f4a3
+  - enabled: 1
+    path: Assets/Scenes/Story Scene 1.unity
+    guid: 124a213fa33eb0b4385e4cec3d2f1c75
+  - enabled: 1
+    path: Assets/Scenes/Story Scene 2.unity
+    guid: e57cea6a799e750458e8e80c20110a19
+  - enabled: 1
+    path: Assets/Scenes/Story Scene 3.unity
+    guid: 89922b3a7f6619d4c8558657ccfc5f18
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 36cb9bda062a81e4c90f206178d4b198
+  - enabled: 1
+    path: Assets/Scenes/StoreTutorial.unity
+    guid: 62ae09e20aa28c94d90513f28fe6099c
+  - enabled: 1
+    path: Assets/Scenes/Store.unity
+    guid: 98610fd5300b9ec45aee1b406fa04d34
+  - enabled: 1
+    path: Assets/Scenes/Skeleton Tutorial.unity
+    guid: 7a7e0218d0043a64f9acfb06754e1abc
+  - enabled: 1
+    path: Assets/Scenes/SwordTutorial.unity
+    guid: 5ea3dcfe2765e6441af30d70d642d592
+  - enabled: 1
+    path: Assets/Scenes/KickTutorial.unity
+    guid: 56180547a8b69e44d936f103526f9e69
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: e9c7ff1f18fc9d143abf2fe34f673064
+  m_configObjects: {}
