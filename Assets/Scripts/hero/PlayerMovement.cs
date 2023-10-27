@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,59 +12,34 @@ public class PlayerMovement : MonoBehaviour
     // Object info
     [SerializeField]
     private Transform attackPoint;
+    [SerializeField]
+    private Transform slashAnimationPoint;
+    [SerializeField]
+    private SpriteRenderer slashAnimationRenderer;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
     // In-program Variables
     private Vector2 direction;
-    private float deltaAttackPointX;
-
+    private float lastHorizontalInput;
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        deltaAttackPointX = attackPoint.position.x - transform.position.x;
+        lastHorizontalInput = 1;
     }
 
     private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-
-        direction = new Vector2(horizontalInput, verticalInput);
-        UpdateSpriteDirection(direction);
-        UpdateAttackPoint(direction);
+        direction = new Vector2(Math.Abs(horizontalInput), verticalInput);
         animator.SetFloat("Speed", Math.Abs(direction.magnitude));
         transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    private void UpdateSpriteDirection(Vector2 direction)
-    {
-        if (direction.x > 0)
+        if ((horizontalInput > 0 && lastHorizontalInput < 0) || (horizontalInput < 0 && lastHorizontalInput > 0))
         {
-            spriteRenderer.flipX = false;
+            this.transform.Rotate(0f, 180.0f, 0f);
         }
-        else if (direction.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
-    }
-
-    private void UpdateAttackPoint(Vector2 direction)
-    {
-        if (direction.x > 0)
-        {
-            Vector3 newPosition = transform.position;
-            float updatedX = transform.position.x + deltaAttackPointX;
-            newPosition.x = updatedX;
-            attackPoint.position = newPosition;
-        }
-        else if (direction.x < 0)
-        {
-            Vector3 newPosition = transform.position;
-            float updatedX = transform.position.x - deltaAttackPointX;
-            newPosition.x = updatedX;
-            attackPoint.position = newPosition;
-        }
+        if (horizontalInput != 0) lastHorizontalInput = horizontalInput;
     }
 }
