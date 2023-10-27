@@ -105,7 +105,6 @@ public class EnemyHealth : MonoBehaviour
 
     public void Dies()
     {
-        Debug.LogWarning("Enemy died");
         if (deathSound != null)
         {
             SoundManager.Instance.PlaySound(deathSound);

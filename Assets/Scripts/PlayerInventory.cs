@@ -50,9 +50,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void incCurrentWave()
     {
-        //Debug.Log(currentWave);
         currentWave++;
-        //Debug.Log("Nova onde = " + currentWave.ToString());
     }
 
     public int getPunchDamage()

@@ -10,21 +10,13 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5.0f;
 
     // Object info
-    [SerializeField]
-    private Transform attackPoint;
-    [SerializeField]
-    private Transform slashAnimationPoint;
-    [SerializeField]
-    private SpriteRenderer slashAnimationRenderer;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
 
     // In-program Variables
     private Vector2 direction;
     private float lastHorizontalInput;
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         lastHorizontalInput = 1;
     }

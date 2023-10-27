@@ -36,12 +36,10 @@ public class LevelManager : MonoBehaviour
         gameOverCanvas.gameObject.SetActive(false);
         waveOverCanvas.gameObject.SetActive(false);
         currentWave = inventory.getCurrentWave();
-        Debug.Log(currentWave);
         if (currentWave == 1) 
         {
-            Debug.Log(currentWave);
             instructionsCanvas.gameObject.SetActive(true);
-            Debug.Log(Instantiate(zombie, new Vector3(10, -1, 0), Quaternion.identity));
+            Instantiate(zombie, new Vector3(10, -1, 0), Quaternion.identity);
         }
         else if (currentWave == 2)
         {

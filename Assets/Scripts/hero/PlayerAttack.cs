@@ -28,6 +28,10 @@ public class PlayerAttack : MonoBehaviour
     private Transform attackPoint;
     [SerializeField]
     private LayerMask enemyLayers;
+    [SerializeField]
+    private GameObject SlashAnimation;
+    [SerializeField]
+    private Animator SlashAnimator;
 
 
     // Outside components
@@ -47,6 +51,7 @@ public class PlayerAttack : MonoBehaviour
         lastKickTime = Time.time;
         lastSwordTime = Time.time;
         animator = GetComponent<Animator>();
+        SlashAnimation.SetActive(false);
     }
 
     private void Update()
@@ -80,6 +85,8 @@ public class PlayerAttack : MonoBehaviour
 
         lastPunchTime = Time.time;
         animator.SetTrigger("Punch");
+        SlashAnimation.SetActive(true);
+        SlashAnimator.SetTrigger("Punch");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, punchRange, enemyLayers);
         Collider2D firstEnemy = null;
