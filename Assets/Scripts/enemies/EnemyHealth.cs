@@ -47,6 +47,14 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void Update()
+    {
+        if(rb.velocity.x > 0 || rb.velocity.y > 0)
+        {
+            StartCoroutine(ResetKnockback());
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         if (damageSound != null)
