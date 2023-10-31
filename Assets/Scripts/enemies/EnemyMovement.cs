@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -25,6 +27,8 @@ public class EnemyMovement : MonoBehaviour
     // In-program Variables
     private Vector2 direction;
     private float deltaAttackPointX;
+    private float lastHorizontalPosition = -1.0f;
+    private Vector2 new_direction;
 
     private void Start()
     {
@@ -42,38 +46,49 @@ public class EnemyMovement : MonoBehaviour
 
         direction = playerTransform.position - transform.position;
         animator.SetFloat("Speed", Math.Abs(direction.magnitude));
-        UpdateSpriteDirection(direction);
-        UpdateAttackPoint(direction);
-        transform.Translate(direction.normalized * speed * Time.deltaTime);
+        UpdateDirection(direction.x);
+        //UpdateSpriteDirection(direction);
+        //UpdateAttackPoint(direction);
+        // transform.Translate(direction.normalized * speed * Time.deltaTime);
+        new_direction = new Vector2(- Math.Abs(direction.normalized.x), direction.normalized.y);
+        transform.Translate(new_direction * speed * Time.deltaTime);
     }
 
-    void UpdateSpriteDirection(Vector2 direction)
+    private void UpdateDirection(float horizontalPosition)
     {
-        if (direction.x > 0)
+        if ((horizontalPosition > 0 && lastHorizontalPosition < 0) || (horizontalPosition < 0 && lastHorizontalPosition > 0))
         {
-            spriteRenderer.flipX = false;
+            this.transform.Rotate(0f, 180.0f, 0f);
         }
-        else if (direction.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
+        if (horizontalPosition != 0) lastHorizontalPosition = horizontalPosition;
     }
+    //void UpdateSpriteDirection(Vector2 direction)
+    //{
+    //    if (direction.x > 0)
+    //    {
+    //        spriteRenderer.flipX = false;
+    //    }
+    //    else if (direction.x < 0)
+    //    {
+    //        spriteRenderer.flipX = true;
+    //    }
+    //}
 
-    private void UpdateAttackPoint(Vector2 direction)
-    {
-        if (direction.x > 0)
-        {
-            Vector3 newPosition = transform.position;
-            float updatedX = transform.position.x + deltaAttackPointX;
-            newPosition.x = updatedX;
-            attackPoint.position = newPosition;
-        }
-        else if (direction.x < 0)
-        {
-            Vector3 newPosition = transform.position;
-            float updatedX = transform.position.x - deltaAttackPointX;
-            newPosition.x = updatedX;
-            attackPoint.position = newPosition;
-        }
-    }
+    //private void UpdateAttackPoint(Vector2 direction)
+    //{
+    //    if (direction.x > 0)
+    //    {
+    //        Vector3 newPosition = transform.position;
+    //        float updatedX = transform.position.x + deltaAttackPointX;
+    //        newPosition.x = updatedX;
+    //        attackPoint.position = newPosition;
+    //    }
+    //    else if (direction.x < 0)
+    //    {
+    //        Vector3 newPosition = transform.position;
+    //        float updatedX = transform.position.x - deltaAttackPointX;
+    //        newPosition.x = updatedX;
+    //        attackPoint.position = newPosition;
+    //    }
+    //}
 }

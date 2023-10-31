@@ -14,6 +14,8 @@ public class EnemyAttack : MonoBehaviour
     private float attackDelay = 1, attackDistanceThreshold = 1.7f;
     [SerializeField]
     private float attackForce = 5f, attackRange = 0.4f;
+    [SerializeField]
+    private Animator punchAnimator;
 
     // Object info
     private Animator animator;
@@ -63,6 +65,7 @@ public class EnemyAttack : MonoBehaviour
         }
 
         animator.SetTrigger("Attack");
+        punchAnimator.SetTrigger("Punch");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, heroLayer);
         Collider2D player = null;
 
