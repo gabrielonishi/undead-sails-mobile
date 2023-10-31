@@ -47,9 +47,6 @@ public class EnemyMovement : MonoBehaviour
         direction = playerTransform.position - transform.position;
         animator.SetFloat("Speed", Math.Abs(direction.magnitude));
         UpdateDirection(direction.x);
-        //UpdateSpriteDirection(direction);
-        //UpdateAttackPoint(direction);
-        // transform.Translate(direction.normalized * speed * Time.deltaTime);
         new_direction = new Vector2(- Math.Abs(direction.normalized.x), direction.normalized.y);
         transform.Translate(new_direction * speed * Time.deltaTime);
     }
@@ -62,33 +59,4 @@ public class EnemyMovement : MonoBehaviour
         }
         if (horizontalPosition != 0) lastHorizontalPosition = horizontalPosition;
     }
-    //void UpdateSpriteDirection(Vector2 direction)
-    //{
-    //    if (direction.x > 0)
-    //    {
-    //        spriteRenderer.flipX = false;
-    //    }
-    //    else if (direction.x < 0)
-    //    {
-    //        spriteRenderer.flipX = true;
-    //    }
-    //}
-
-    //private void UpdateAttackPoint(Vector2 direction)
-    //{
-    //    if (direction.x > 0)
-    //    {
-    //        Vector3 newPosition = transform.position;
-    //        float updatedX = transform.position.x + deltaAttackPointX;
-    //        newPosition.x = updatedX;
-    //        attackPoint.position = newPosition;
-    //    }
-    //    else if (direction.x < 0)
-    //    {
-    //        Vector3 newPosition = transform.position;
-    //        float updatedX = transform.position.x - deltaAttackPointX;
-    //        newPosition.x = updatedX;
-    //        attackPoint.position = newPosition;
-    //    }
-    //}
 }
