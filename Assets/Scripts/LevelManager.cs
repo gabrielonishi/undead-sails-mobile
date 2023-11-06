@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    private int WAVE_OVER_SCENE_BUILD_INDEX = 11;
     private int STORE_TUTORIAL_SCENE_BUILD_INDEX = 5;
     private int STORE_SCENE_BUILD_INDEX = 6;
 
@@ -18,9 +19,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int waitTime = 10;
     [SerializeField]
-    Canvas gameOverCanvas, instructionsCanvas, waveOverCanvas;
-    [SerializeField]
-    TextMeshProUGUI coinsWonText;
+    Canvas gameOverCanvas;
     [SerializeField]
     GameObject zombie, skeleton;
     [SerializeField]
@@ -34,22 +33,18 @@ public class LevelManager : MonoBehaviour
     {
         inventory = PlayerInventory.Instance;
         gameOverCanvas.gameObject.SetActive(false);
-        waveOverCanvas.gameObject.SetActive(false);
         currentWave = inventory.getCurrentWave();
         if (currentWave == 1) 
         {
-            instructionsCanvas.gameObject.SetActive(true);
             Instantiate(zombie, new Vector3(10, -1, 0), Quaternion.identity);
         }
         else if (currentWave == 2)
         {
             Debug.Log("entra");
-            instructionsCanvas.gameObject.SetActive(false);
             Instantiate(skeleton, new Vector3(10, -1, 0), Quaternion.identity);
         }
         else
         {
-            instructionsCanvas.gameObject.SetActive(false);
             enemiesLeft = currentWave;
             zombiesAmount = Random.Range(0, enemiesLeft);
             skeletonsAmount = enemiesLeft - zombiesAmount;
@@ -87,7 +82,6 @@ public class LevelManager : MonoBehaviour
     { 
         yield return new WaitForSeconds(waitTime);
         gameOverCanvas.gameObject.SetActive(true);
-        instructionsCanvas.gameObject.SetActive(false);
         GameObject playerGameObject = GameObject.Find("Player");
         Destroy(playerGameObject);
     }
@@ -125,20 +119,15 @@ public class LevelManager : MonoBehaviour
     private IEnumerator WaveOverTimer()
     {
         yield return new WaitForSeconds(waitTime);
-        instructionsCanvas.gameObject.SetActive(false);
-        waveOverCanvas.gameObject.SetActive(true);
-        coinsWonText.text = "Moedas arrecadadas: " + coinsWon.ToString();
+        SceneManager.LoadScene(WAVE_OVER_SCENE_BUILD_INDEX);
     }
 
     private IEnumerator PlaySoundAndLoadSceneCoroutine(int sceneIndex)
     {
-        Debug.Log("Entra");
         clickSound.Play();
 
-        // Wait for the audio clip to finish playing
         yield return new WaitForSeconds(clickSound.clip.length);
 
-        // Now, load the specified scene
         SceneManager.LoadScene(sceneIndex);
     }
 }
