@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     // In-program Variables
     private Vector2 direction;
     private float lastHorizontalInput;
+
+    [SerializeField] private InputActionReference moveActionToUse;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -23,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        Vector2 moveDirection = moveActionToUse.action.ReadValue<Vector2>();
+        transform.Translate(moveDirection * speed * Time.deltaTime);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         direction = new Vector2(Math.Abs(horizontalInput), verticalInput);
