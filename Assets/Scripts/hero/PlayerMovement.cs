@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 direction;
     private float lastHorizontalInput;
 
-    [SerializeField] private InputActionReference moveActionToUse;
+    [SerializeField] 
+    private InputActionReference moveActionToUse;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -27,9 +28,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 moveDirection = moveActionToUse.action.ReadValue<Vector2>();
-        transform.Translate(moveDirection * speed * Time.deltaTime);
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = moveDirection.x;
+        float verticalInput = moveDirection.y;
         direction = new Vector2(Math.Abs(horizontalInput), verticalInput);
         animator.SetFloat("Speed", Math.Abs(direction.magnitude));
         transform.Translate(direction * speed * Time.deltaTime);

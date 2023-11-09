@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -32,7 +33,8 @@ public class PlayerAttack : MonoBehaviour
     private GameObject SlashAnimation;
     [SerializeField]
     private Animator SlashAnimator;
-
+    [SerializeField]
+    private InputActionReference punchButton, kickButton, slashButton;
 
     // Outside components
     PlayerInventory inventory;
@@ -54,19 +56,45 @@ public class PlayerAttack : MonoBehaviour
         SlashAnimation.SetActive(false);
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && (Time.time - lastPunchTime) > punchCooldown)
+        punchButton.action.Enable();
+        punchButton.action.performed += ctx => PunchButtonPressed();
+        kickButton.action.Enable();
+        kickButton.action.performed += ctx => KickButtonPressed();
+        slashButton.action.Enable();
+        slashButton.action.performed += ctx => SlashButtonPressed();
+    }
+
+    private void OnDisable()
+    {
+        punchButton.action.Disable();
+        punchButton.action.performed -= ctx => PunchButtonPressed();
+        kickButton.action.Disable();
+        kickButton.action.performed -= ctx => KickButtonPressed();
+        slashButton.action.Disable();
+        slashButton.action.performed -= ctx => SlashButtonPressed();
+    }
+
+    private void PunchButtonPressed()
+    {
+        if ((Time.time - lastPunchTime) > punchCooldown)
         {
             Punch();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.K) && (Time.time - lastKickTime > kickCooldown) && kickDamage > 0)
+    private void KickButtonPressed()
+    {
+        if ((Time.time - lastKickTime > kickCooldown) && kickDamage > 0)
         {
             Kick();
         }
+    }
 
-        if(Input.GetKeyDown(KeyCode.L) && (Time.time - lastSwordTime > swordCooldown) && swordDamage > 0)
+    private void SlashButtonPressed()
+    {
+        if ((Time.time - lastSwordTime > swordCooldown) && swordDamage > 0)
         {
             Sword();
         }
