@@ -119,6 +119,9 @@ public class LevelManager : MonoBehaviour
     private IEnumerator WaveOverTimer()
     {
         yield return new WaitForSeconds(waitTime);
+        inventory.addCoinsTotal(coinsWon);
+        GameObject playerGameObject = GameObject.Find("Player");
+        Destroy(playerGameObject);
         SceneManager.LoadScene(WAVE_OVER_SCENE_BUILD_INDEX);
     }
 
