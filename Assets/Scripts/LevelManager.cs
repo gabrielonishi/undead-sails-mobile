@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private int WAVE_OVER_SCENE_BUILD_INDEX = 11;
+    private int YOU_LOSE_SCENE_BUILD_INDEX = 12;
     private int STORE_TUTORIAL_SCENE_BUILD_INDEX = 5;
     private int STORE_SCENE_BUILD_INDEX = 6;
 
@@ -19,8 +20,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int waitTime = 10;
     [SerializeField]
-    Canvas gameOverCanvas;
-    [SerializeField]
     GameObject zombie, skeleton;
     [SerializeField]
     Transform playerTransform;
@@ -32,7 +31,6 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         inventory = PlayerInventory.Instance;
-        gameOverCanvas.gameObject.SetActive(false);
         currentWave = inventory.getCurrentWave();
         if (currentWave == 1) 
         {
@@ -81,9 +79,10 @@ public class LevelManager : MonoBehaviour
     private IEnumerator GameOverTimer()
     { 
         yield return new WaitForSeconds(waitTime);
-        gameOverCanvas.gameObject.SetActive(true);
         GameObject playerGameObject = GameObject.Find("Player");
         Destroy(playerGameObject);
+        Debug.Log("Entra");
+        SceneManager.LoadScene(YOU_LOSE_SCENE_BUILD_INDEX);
     }
 
     public void GoToMainMenu()
