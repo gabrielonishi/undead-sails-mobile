@@ -23,6 +23,8 @@ public class LevelManager : MonoBehaviour
     GameObject zombie, skeleton;
     [SerializeField]
     Transform playerTransform;
+    [SerializeField]
+    private GameObject kickButton, slashButton; 
 
     private int coinsWon;
 
@@ -57,7 +59,23 @@ public class LevelManager : MonoBehaviour
                 Instantiate(zombie, new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0), Quaternion.identity);
             }
         }
-        
+
+        if (inventory.getKickDamage() > 0)
+        {
+            kickButton.SetActive(true);
+        }
+        else 
+        {
+            kickButton.SetActive(false);
+        }
+        if (inventory.getSwordDamage() > 0)
+        {
+            slashButton.SetActive(true);
+        }
+        else
+        {
+            slashButton.SetActive(false);
+        }
     }
 
     public void enemyDied(int coinsDropped)

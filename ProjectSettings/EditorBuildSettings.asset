@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: e9c7ff1f18fc9d143abf2fe34f673064
   - enabled: 1
-    path: Assets/Scenes/WaveOver.unity
+    path: Assets/Scenes/Wave Over.unity
+    guid: e5d33323f1981e4489dee5b08396ec75
+  - enabled: 1
+    path: Assets/Scenes/You Lose.unity
     guid: 852edc90d3c7f9e40bb6f8b4b0760830
   m_configObjects: {}
