@@ -519,10 +519,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSound: {fileID: 1724219492}
   waitTime: 2
-  gameOverCanvas: {fileID: 1676213849}
   zombie: {fileID: 6539120517861741720, guid: b3e9ebcd7ba7c5a4d8db6eb64ff4a9a9, type: 3}
   skeleton: {fileID: 5234703378776720235, guid: 7955ed57aeaeb3f45b74fee88929e20b, type: 3}
   playerTransform: {fileID: 468050214}
+  kickButton: {fileID: 365378467}
+  slashButton: {fileID: 662484171}
 --- !u!4 &418420015
 Transform:
   m_ObjectHideFlags: 0
@@ -537,6 +538,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1676213846}
+  - {fileID: 1553701784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &437490569
@@ -3102,8 +3104,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553701783}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.408869, y: 0.19029179, z: -0.016309159}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3112,7 +3114,7 @@ Transform:
   - {fileID: 441771128}
   - {fileID: 528209698}
   - {fileID: 2106418259}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 418420015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588384059
 GameObject:
@@ -4353,7 +4355,6 @@ SceneRoots:
   - {fileID: 918244943}
   - {fileID: 951696471}
   - {fileID: 418420015}
-  - {fileID: 1553701784}
   - {fileID: 468050214}
   - {fileID: 1897963070}
   - {fileID: 1052546909}
