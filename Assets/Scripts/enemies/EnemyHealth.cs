@@ -33,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI coinsText;
     [SerializeField]
-    private GameObject zombieObject;
+    private GameObject enemyObject;
 
     // In-program Variables
     void Start()
@@ -134,6 +134,6 @@ public class EnemyHealth : MonoBehaviour
     private IEnumerator FadeOutTimer()
     {
         yield return new WaitForSeconds(fadeOutTime);
-        zombieObject.gameObject.SetActive(false);
+        enemyObject.gameObject.SetActive(false);
     }
 }
