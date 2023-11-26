@@ -75,7 +75,6 @@ public class DevilController : MonoBehaviour
             if (!loadingAnimationPlaying)
             {
                 passedTime = 0;
-                Debug.Log("Loading");
                 animator.SetTrigger("Load");
                 loadingAnimationPlaying = true;
             }

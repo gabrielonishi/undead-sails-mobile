@@ -14,6 +14,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private float knockbackDuration = 0.5f;
 
+    [SerializeField]
+    private float forceDamping = 0.2f;
+
     // Object info
     private Rigidbody2D rb;
     [SerializeField]
@@ -31,6 +34,21 @@ public class PlayerHealth : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         maxHealth = inventory.getHealthTotal();
         currentHealth = maxHealth;
+    }
+
+    void FixedUpdate()
+    {
+        // Reduce the force gradually using damping
+        rb.velocity *= (1 - forceDamping);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
+        if (collision.gameObject.CompareTag("Arrow"))
+        {
+            Debug.Log("Arrow hit player");
+        }
     }
 
     public void TakeDamage(int damage)
@@ -52,15 +70,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (rb != null)
         {
-            rb.AddForce(direction * force, ForceMode2D.Impulse);
-            StartCoroutine(ResetKnockback());
+            rb.AddForce(direction * force * 20, ForceMode2D.Impulse);
         }
-    }
-
-    private IEnumerator ResetKnockback()
-    {
-        yield return new WaitForSeconds(knockbackDuration);
-        rb.velocity = Vector2.zero;
     }
 
     public void Dies()
