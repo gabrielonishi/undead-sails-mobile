@@ -2643,7 +2643,8 @@ PrefabInstance:
       value: Bow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8026823425267824820, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 140982162299828224, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
       insertIndex: -1

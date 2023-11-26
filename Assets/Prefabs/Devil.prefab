@@ -596,6 +596,10 @@ MonoBehaviour:
   speed: 2
   tooCloseDist: 9
   tooFarDist: 11
+  launchForce: 5
+  attackDelay: 1
+  shotPoint: {fileID: 0}
+  arrow: {fileID: 0}
 --- !u!1 &6943827919859619773
 GameObject:
   m_ObjectHideFlags: 0

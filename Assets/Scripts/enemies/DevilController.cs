@@ -35,7 +35,8 @@ public class DevilController : MonoBehaviour
     private float distance;
     private float lastHorizontalPosition = -1.0f;
     private Vector2 new_direction;
-    private float passedTime = 1;
+    private float passedTime = 0;
+    private bool loadingAnimationPlaying = false;
 
     private void Start()
     {
@@ -58,27 +59,44 @@ public class DevilController : MonoBehaviour
             // Get away from player
             animator.SetFloat("Speed", Math.Abs(direction.magnitude));
             new_direction = new Vector2(Math.Abs(direction.normalized.x), - direction.normalized.y);
-            passedTime = 0;
             transform.Translate(new_direction * speed * Time.deltaTime);
+            loadingAnimationPlaying = false;
         }
         else if (distance > tooFarDist){
             // Get closer to player
             animator.SetFloat("Speed", Math.Abs(direction.magnitude));
             new_direction = new Vector2(-Math.Abs(direction.normalized.x), direction.normalized.y);
-            passedTime = 0;
             transform.Translate(new_direction * speed * Time.deltaTime);
+            loadingAnimationPlaying = false;
         }
         else {
             // Stop moving and shoot arrow
             animator.SetFloat("Speed", 0);
-            // new_direction = new Vector2(0, 0);
-            Shoot(direction, distance);
+            if (!loadingAnimationPlaying)
+            {
+                passedTime = 0;
+                Debug.Log("Loading");
+                animator.SetTrigger("Load");
+                loadingAnimationPlaying = true;
+            }
+            else
+            {
+                passedTime += Time.deltaTime;
+            }
+
+            if (passedTime >= attackDelay)
+            {
+                Shoot();
+                passedTime = 0;
+                loadingAnimationPlaying = false;
+                animator.SetTrigger("GoToIdle");
+            }
         }
         
     }
 
     private void UpdateDirection(float horizontalPosition)
-    {
+    {   
         if ((horizontalPosition > 0 && lastHorizontalPosition < 0) || (horizontalPosition < 0 && lastHorizontalPosition > 0))
         {
             this.transform.Rotate(0f, 180.0f, 0f);
@@ -86,27 +104,18 @@ public class DevilController : MonoBehaviour
         if (horizontalPosition != 0) lastHorizontalPosition = horizontalPosition;
     }
 
-    private void Shoot(Vector2 direction, float distance)
+    private void Shoot()
     {
-        if (passedTime >= attackDelay)
-        {
-            // Shoot arrow at player
-            GameObject newArrow = Instantiate(arrow, shotPoint.position, shotPoint.rotation);
+        // Shoot arrow at player
+        GameObject newArrow = Instantiate(arrow, shotPoint.position, shotPoint.rotation);
 
-            // Calculate the direction towards the player
-            Vector2 shootDirection = (playerTransform.position - shotPoint.position).normalized;
+        // Calculate the direction towards the player
+        Vector2 shootDirection = (playerTransform.position - shotPoint.position).normalized;
 
-            // Calculate the velocity needed to reach the player accounting for gravity
-            Vector2 requiredVelocity = CalculateVelocityToReachTarget(playerTransform.position, shotPoint.position, launchForce);
+        // Calculate the velocity needed to reach the player accounting for gravity
+        Vector2 requiredVelocity = CalculateVelocityToReachTarget(playerTransform.position, shotPoint.position, launchForce);
 
-            newArrow.GetComponent<Rigidbody2D>().velocity = requiredVelocity;
-
-            passedTime = 0;
-        }
-        else
-        {
-            passedTime += Time.deltaTime;
-        }
+        newArrow.GetComponent<Rigidbody2D>().velocity = requiredVelocity;
     }
 
     private Vector2 CalculateVelocityToReachTarget(Vector3 targetPosition, Vector3 initialPosition, float launchSpeed)
