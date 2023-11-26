@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 3781929875723585158}
   - component: {fileID: 8533526837739428450}
   - component: {fileID: 972562382099288097}
+  - component: {fileID: 8463315894208511848}
   m_Layer: 7
   m_Name: Devil
   m_TagString: Enemy
@@ -631,6 +632,27 @@ MonoBehaviour:
   attackDelay: 1
   shotPoint: {fileID: 278890715714642191}
   arrow: {fileID: 2657802639523056359, guid: 0de018541c593e74b85b9c23e4a79d70, type: 3}
+--- !u!114 &8463315894208511848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6539120517861741720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41a2dfee75bea6a47b8fe9a59a1efb9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  maxHealth: 50
+  knockbackDuration: 0.5
+  fadeOutTime: 3
+  healthBar: {fileID: 376286551591910978}
+  coinCanvas: {fileID: 1441458835003427540}
+  coinsText: {fileID: 2060953780354718882}
+  enemyObject: {fileID: 6539120517861741720}
 --- !u!1 &6943827919859619773
 GameObject:
   m_ObjectHideFlags: 0
