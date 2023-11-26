@@ -55,14 +55,14 @@ public class DevilController : MonoBehaviour
         UpdateDirection(direction.x);
         distance = Vector2.Distance(transform.position, playerTransform.position);
 
-        if (distance < tooCloseDist){
+        if (distance < tooCloseDist && !loadingAnimationPlaying){
             // Get away from player
             animator.SetFloat("Speed", Math.Abs(direction.magnitude));
             new_direction = new Vector2(Math.Abs(direction.normalized.x), - direction.normalized.y);
             transform.Translate(new_direction * speed * Time.deltaTime);
             loadingAnimationPlaying = false;
         }
-        else if (distance > tooFarDist){
+        else if (distance > tooFarDist && !loadingAnimationPlaying){
             // Get closer to player
             animator.SetFloat("Speed", Math.Abs(direction.magnitude));
             new_direction = new Vector2(-Math.Abs(direction.normalized.x), direction.normalized.y);
