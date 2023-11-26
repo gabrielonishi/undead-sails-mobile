@@ -12,7 +12,10 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
 
     [SerializeField]
-    private float knockbackDuration = 0.5f;
+    private int arrowDamage = 15;
+
+    [SerializeField] 
+    float invulnerabilityDuration = 1.0f;
 
     [SerializeField]
     private float forceDamping = 0.2f;
@@ -27,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerInventory inventory;
 
     // In-program Variables
+    private bool isInvulnerable = false;
     void Start()
     {
         inventory = PlayerInventory.Instance;
@@ -35,19 +39,18 @@ public class PlayerHealth : MonoBehaviour
         maxHealth = inventory.getHealthTotal();
         currentHealth = maxHealth;
     }
-
     void FixedUpdate()
     {
         // Reduce the force gradually using damping
         rb.velocity *= (1 - forceDamping);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Collision");
-        if (collision.gameObject.CompareTag("Arrow"))
+        if (collision.gameObject.CompareTag("Arrow") && !isInvulnerable)
         {
-            Debug.Log("Arrow hit player");
+            TakeDamage(arrowDamage);
+            StartCoroutine(InvulnerabilityCooldown());
         }
     }
 
@@ -64,6 +67,13 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("Dies");
             Dies();
         }
+    }
+
+    IEnumerator InvulnerabilityCooldown()
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerabilityDuration);
+        isInvulnerable = false;
     }
 
     public void ApplyKnockback(Vector2 direction, float force)
