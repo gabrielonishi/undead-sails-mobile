@@ -40,7 +40,6 @@ public class LevelManager : MonoBehaviour
         }
         else if (currentWave == 2)
         {
-            Debug.Log("entra");
             Instantiate(skeleton, new Vector3(10, -1, 0), Quaternion.identity);
         }
         else
@@ -99,7 +98,6 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         GameObject playerGameObject = GameObject.Find("Player");
         Destroy(playerGameObject);
-        Debug.Log("Entra");
         SceneManager.LoadScene(YOU_LOSE_SCENE_BUILD_INDEX);
     }
 
@@ -111,35 +109,33 @@ public class LevelManager : MonoBehaviour
     private void WaveOver()
     {
         inventory.incCurrentWave();
+        inventory.addCoinsTotal(coinsWon);
+        inventory.setCoinsWon(coinsWon);
         StartCoroutine(WaveOverTimer());
+    }
+
+    private IEnumerator WaveOverTimer()
+    {
+        yield return new WaitForSeconds(waitTime);
+        GameObject playerGameObject = GameObject.Find("Player");
+        Destroy(playerGameObject);
+        SceneManager.LoadScene(WAVE_OVER_SCENE_BUILD_INDEX);
     }
 
     public void GoToStore()
     {
-        inventory.addCoinsTotal(coinsWon);
         GameObject playerGameObject = GameObject.Find("Player");
-
         Destroy(playerGameObject);
 
         if (currentWave == 1)
         {
             // SceneManager.LoadScene(STORE_TUTORIAL_SCENE_BUILD_INDEX);
-            Debug.Log("Entra em GoToStore()");
             StartCoroutine(PlaySoundAndLoadSceneCoroutine(STORE_TUTORIAL_SCENE_BUILD_INDEX));
         }
         else
         {
             SceneManager.LoadScene(STORE_SCENE_BUILD_INDEX);
         }
-    }
-
-    private IEnumerator WaveOverTimer()
-    {
-        yield return new WaitForSeconds(waitTime);
-        inventory.addCoinsTotal(coinsWon);
-        GameObject playerGameObject = GameObject.Find("Player");
-        Destroy(playerGameObject);
-        SceneManager.LoadScene(WAVE_OVER_SCENE_BUILD_INDEX);
     }
 
     private IEnumerator PlaySoundAndLoadSceneCoroutine(int sceneIndex)

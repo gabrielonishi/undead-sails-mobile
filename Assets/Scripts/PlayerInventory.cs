@@ -11,9 +11,8 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     public int punchDamage;
 
-    private int coinsTotal, currentWave;
+    private int coinsTotal, currentWave, coinsWon;
     private int kickDamage, swordDamage, healthTotal;
-
     private void Awake()
     {
         
@@ -91,5 +90,15 @@ public class PlayerInventory : MonoBehaviour
     public void addHealthTotal(int healthPoints)
     {
         healthTotal += healthPoints;
+    }
+
+    public void setCoinsWon(int coins)
+    {
+        coinsWon = coins;
+    }
+
+    public int getCoinsWon()
+    {
+        return coinsWon;
     }
 }
