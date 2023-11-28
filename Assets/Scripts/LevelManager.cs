@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private int WAVE_OVER_SCENE_BUILD_INDEX = 11;
-    private int YOU_LOSE_SCENE_BUILD_INDEX = 12;
-    private int STORE_TUTORIAL_SCENE_BUILD_INDEX = 5;
-    private int STORE_SCENE_BUILD_INDEX = 6;
+    private int WAVE_OVER_SCENE_BUILD_INDEX = 13;
+    private int YOU_LOSE_SCENE_BUILD_INDEX = 14;
+    private int STORE_TUTORIAL_SCENE_BUILD_INDEX = 7;
+    private int STORE_SCENE_BUILD_INDEX = 8;
 
     PlayerInventory inventory;
 
