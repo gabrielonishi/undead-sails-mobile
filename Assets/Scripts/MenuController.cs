@@ -11,7 +11,7 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
-    public void PlayGame()
+    public void NextScene()
     {
         PlaySoundAndLoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
