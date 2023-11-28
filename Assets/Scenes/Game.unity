@@ -2614,15 +2614,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4030005876188917883, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4030005876188917883, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6539120517861741720, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
       propertyPath: m_Name
       value: Devil
+      objectReference: {fileID: 0}
+    - target: {fileID: 6539120517861741720, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
