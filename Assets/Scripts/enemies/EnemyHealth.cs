@@ -32,8 +32,6 @@ public class EnemyHealth : MonoBehaviour
     private LevelManager levelManager;
     [SerializeField]
     private TextMeshProUGUI coinsText;
-    [SerializeField]
-    private GameObject enemyObject;
 
     // In-program Variables
     void Start()
@@ -129,11 +127,12 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.enabled = false;
 
         StartCoroutine(FadeOutTimer());
+        Debug.Log("Enemy Died");
     }
 
     private IEnumerator FadeOutTimer()
     {
         yield return new WaitForSeconds(fadeOutTime);
-        enemyObject.gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

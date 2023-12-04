@@ -827,7 +827,6 @@ MonoBehaviour:
   healthBar: {fileID: 2013655809118624939}
   coinCanvas: {fileID: 2573857368051472329}
   coinsText: {fileID: 7528887665865687035}
-  zombieObject: {fileID: 5234703378776720235}
 --- !u!114 &431145994113291022
 MonoBehaviour:
   m_ObjectHideFlags: 0

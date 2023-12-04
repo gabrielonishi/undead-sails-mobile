@@ -206,7 +206,6 @@ public class StoreController : MonoBehaviour
             buy(ticketPrice);
             Destroy(inventory);
             StartCoroutine(PlaySoundAndLoadSceneCoroutine(GAME_OVER_SCENE_BUILD_INDEX));
-            // SceneManager.LoadScene(GAME_OVER_SCENE_BUILD_INDEX);
         }
     }
 
