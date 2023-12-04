@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     private int YOU_LOSE_SCENE_BUILD_INDEX = 14;
     private int STORE_TUTORIAL_SCENE_BUILD_INDEX = 7;
     private int STORE_SCENE_BUILD_INDEX = 8;
+    private int MAIN_MENU_SCENE_BUILD_INDEX = 0;
 
     PlayerInventory inventory;
 
@@ -31,10 +32,17 @@ public class LevelManager : MonoBehaviour
 
     private int maxX = 15, maxY = -2, minX = 0, minY = -8;
 
+    [SerializeField]
+    private GameObject InGameUI, PauseMenuUI;
+
     void Start()
     {
         inventory = PlayerInventory.Instance;
         currentWave = inventory.getCurrentWave();
+
+        InGameUI.SetActive(true);
+        PauseMenuUI.SetActive(false);
+
         if (currentWave == 1) 
         {
             Instantiate(zombie, new Vector3(10, -1, 0), Quaternion.identity);
@@ -76,6 +84,30 @@ public class LevelManager : MonoBehaviour
         {
             slashButton.SetActive(false);
         }
+    }
+
+    public void pauseGame()
+    {
+        clickSound.Play();
+        Time.timeScale = 0;
+        InGameUI.SetActive(false);
+        PauseMenuUI.SetActive(true);
+    }  
+
+    public void unPauseGame()
+    {
+        clickSound.Play();
+        InGameUI.SetActive(true);
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1;  
+    }
+
+    public void quitGame()
+    {
+        GameObject playerGameObject = GameObject.Find("Player");
+        Destroy(playerGameObject);
+        clickSound.Play();
+        SceneManager.LoadScene(MAIN_MENU_SCENE_BUILD_INDEX);
     }
 
     public void enemyDied(int coinsDropped)
