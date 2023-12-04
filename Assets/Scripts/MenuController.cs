@@ -15,7 +15,6 @@ public class MenuController : MonoBehaviour
 
     public void GoToStoryScene()
     {
-        Debug.Log("Entra em GoToStoryScene");
         PlaySoundAndLoadScene(1);
     }
 
@@ -51,7 +50,6 @@ public class MenuController : MonoBehaviour
 
     private IEnumerator PlaySoundAndLoadSceneCoroutine(int sceneIndex)
     {
-        Debug.Log("Entra");
         audioSource.Play();
 
         while (audioSource.isPlaying)
@@ -59,7 +57,6 @@ public class MenuController : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Passa de WaitForSeconds");
         // Now, load the specified scene
         SceneManager.LoadScene(sceneIndex);
     }
