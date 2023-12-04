@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+
         inventory = PlayerInventory.Instance;
         currentWave = inventory.getCurrentWave();
 
