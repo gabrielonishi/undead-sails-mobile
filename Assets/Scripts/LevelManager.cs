@@ -15,14 +15,14 @@ public class LevelManager : MonoBehaviour
 
     PlayerInventory inventory;
 
-    private int currentWave, enemiesLeft, zombiesAmount, skeletonsAmount;
+    private int currentWave, enemiesLeft, zombiesAmount, skeletonsAmount, devilsAmount;
 
     [SerializeField]
     private AudioSource clickSound;
     [SerializeField]
     private int waitTime = 10;
     [SerializeField]
-    GameObject zombie, skeleton;
+    GameObject zombie, skeleton, devil;
     [SerializeField]
     Transform playerTransform;
     [SerializeField]
@@ -52,14 +52,27 @@ public class LevelManager : MonoBehaviour
         {
             Instantiate(skeleton, new Vector3(10, -1, 0), Quaternion.identity);
         }
+        else if (currentWave == 3)
+        {
+            Instantiate(devil, new Vector3(10, -1, 0), Quaternion.identity);
+        }
         else
         {
-            enemiesLeft = currentWave;
-            zombiesAmount = Random.Range(0, enemiesLeft);
-            skeletonsAmount = enemiesLeft - zombiesAmount;
+            enemiesLeft = currentWave - 2;
 
-            for(int i = 0;  i < skeletonsAmount; i++)
-            { 
+            int zombiesAmount = Mathf.RoundToInt(enemiesLeft * 0.50f);
+
+            int skeletonsAmount = Mathf.RoundToInt(enemiesLeft * 0.35f);
+
+            int devilsAmount = enemiesLeft - zombiesAmount - skeletonsAmount;
+
+            for (int i = 0; i < devilsAmount; i++)
+            {
+                Instantiate(devil, new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0), Quaternion.identity);
+            }
+
+            for (int i = 0; i < skeletonsAmount; i++)
+            {
                 Instantiate(skeleton, new Vector3(Random.Range(minX, maxX), Random.Range(minY, maxY), 0), Quaternion.identity);
             }
 

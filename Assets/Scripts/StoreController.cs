@@ -12,6 +12,7 @@ public class StoreController : MonoBehaviour
     private int SWORD_TUTORIAL_SCENE_BUILD_INDEX = 10;
     private int KICK_TUTORIAL_SCENE_BUILD_INDEX = 11;
     private int GAME_OVER_SCENE_BUILD_INDEX = 12;
+    private int DEVL_TUTORIAL_SCENE_BUILD_INDEX = 16;
 
     [SerializeField]
     private AudioSource clickSound, buySound;
@@ -187,12 +188,14 @@ public class StoreController : MonoBehaviour
         if (currentWave == 2)
         {
             StartCoroutine(PlaySoundAndLoadSceneCoroutine(SKELETON_TUTORIAL_SCENE_BUILD_INDEX));
-            //SceneManager.LoadScene(SKELETON_TUTORIAL_SCENE_BUILD_INDEX);
+        }
+        else if (currentWave == 3)
+        {
+            StartCoroutine(PlaySoundAndLoadSceneCoroutine(DEVL_TUTORIAL_SCENE_BUILD_INDEX));
         }
         else
         {
             StartCoroutine(PlaySoundAndLoadSceneCoroutine(GAME_SCENE_BUILD_INDEX));
-            //SceneManager.LoadScene(GAME_SCENE_BUILD_INDEX);
         }
     }
 
