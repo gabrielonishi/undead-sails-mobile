@@ -105,16 +105,16 @@ public class DevilController : MonoBehaviour
 
     private void Shoot()
     {
-        // Shoot arrow at player
         GameObject newArrow = Instantiate(arrow, shotPoint.position, shotPoint.rotation);
 
-        // Calculate the direction towards the player
         Vector2 shootDirection = (playerTransform.position - shotPoint.position).normalized;
 
-        // Calculate the velocity needed to reach the player accounting for gravity
         Vector2 requiredVelocity = CalculateVelocityToReachTarget(playerTransform.position, shotPoint.position, launchForce);
 
         newArrow.GetComponent<Rigidbody2D>().velocity = requiredVelocity;
+
+        StartCoroutine(DestroyArrowAfterTime(newArrow, 4));
+
     }
 
     private Vector2 CalculateVelocityToReachTarget(Vector3 targetPosition, Vector3 initialPosition, float launchSpeed)
@@ -123,15 +123,18 @@ public class DevilController : MonoBehaviour
         float displacementX = displacement.x;
         float displacementY = displacement.y;
 
-        // Calculate time to reach the target horizontally
         float timeToReachX = Mathf.Abs(displacementX / launchSpeed);
 
-        // Calculate the vertical velocity needed to reach the target at the given time
         float verticalVelocity = (displacementY + 0.5f * Physics2D.gravity.magnitude * Mathf.Pow(timeToReachX, 2)) / timeToReachX;
 
-        // Calculate the horizontal velocity
         float horizontalVelocity = displacementX / timeToReachX;
 
         return new Vector2(horizontalVelocity, verticalVelocity);
+    }
+
+    private IEnumerator DestroyArrowAfterTime(GameObject arrowObject, float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(arrowObject);
     }
 }
