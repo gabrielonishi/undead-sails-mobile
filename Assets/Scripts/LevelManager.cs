@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     private int WAVE_OVER_SCENE_BUILD_INDEX = 13;
+    private int WATCH_AD_SCENE_BUILD_INDEX = 15;
     private int YOU_LOSE_SCENE_BUILD_INDEX = 14;
     private int STORE_TUTORIAL_SCENE_BUILD_INDEX = 7;
     private int STORE_SCENE_BUILD_INDEX = 8;
@@ -98,7 +99,21 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         GameObject playerGameObject = GameObject.Find("Player");
         Destroy(playerGameObject);
+        Destroy(inventory);
         SceneManager.LoadScene(YOU_LOSE_SCENE_BUILD_INDEX);
+    }
+
+    public void PlayerDied()
+    {
+        StartCoroutine(PlayerDiedTimer());
+    }
+
+    private IEnumerator PlayerDiedTimer()
+    { 
+        yield return new WaitForSeconds(waitTime);
+        GameObject playerGameObject = GameObject.Find("Player");
+        Destroy(playerGameObject);
+        SceneManager.LoadScene(WATCH_AD_SCENE_BUILD_INDEX);
     }
 
     public void GoToMainMenu()

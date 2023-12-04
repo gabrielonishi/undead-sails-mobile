@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class loadRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
+    private int GAME_SCENE_BUILD_INDEX = 6;
     public string androidAdUnitId;
     public string iosAdUnitId;
 
@@ -57,16 +59,19 @@ public class loadRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
+        print("Rewarded show complete");
+        SceneManager.LoadScene(GAME_SCENE_BUILD_INDEX);
         if (placementId.Equals(adUnitId)&&showCompletionState.Equals(UnityAdsCompletionState.COMPLETED))
         {
-            print("Rewarded show complete , Distribute the rewards");
+            // print("ENTRAAAAAAAA"); 
+            // print("Rewarded show complete , Distribute the rewards");
+            // SceneManager.LoadScene(GAME_SCENE_BUILD_INDEX);
         }
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
         print("Rewarded show failure");
-
     }
 
     public void OnUnityAdsShowStart(string placementId)

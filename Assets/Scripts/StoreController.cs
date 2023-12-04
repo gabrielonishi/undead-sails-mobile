@@ -7,11 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class StoreController : MonoBehaviour
 {
-    private int GAME_SCENE_BUILD_INDEX = 4;
-    private int SKELETON_TUTORIAL_SCENE_BUILD_INDEX = 7;
-    private int SWORD_TUTORIAL_SCENE_BUILD_INDEX = 8;
-    private int KICK_TUTORIAL_SCENE_BUILD_INDEX = 9;
-    private int GAME_OVER_SCENE_BUILD_INDEX = 10;
+    private int GAME_SCENE_BUILD_INDEX = 6;
+    private int SKELETON_TUTORIAL_SCENE_BUILD_INDEX = 9;
+    private int SWORD_TUTORIAL_SCENE_BUILD_INDEX = 10;
+    private int KICK_TUTORIAL_SCENE_BUILD_INDEX = 11;
+    private int GAME_OVER_SCENE_BUILD_INDEX = 12;
 
     [SerializeField]
     private AudioSource clickSound, buySound;
@@ -69,16 +69,16 @@ public class StoreController : MonoBehaviour
     private void initializeText()
     {
         coinBalanceText.text = coinBalance.ToString();
-        currentPunchDamageText.text = "Dano Atual: " + inventory.getPunchDamage().ToString();
+        currentPunchDamageText.text = "DAMAGE: " + inventory.getPunchDamage().ToString();
         unlockPunchPriceText.text = unlockPunchPrice.ToString();
         upgradePunchPriceText.text = upgradePunchPrice.ToString();
-        currentKickDamageText.text = "Dano Atual: " + inventory.getKickDamage().ToString();
+        currentKickDamageText.text = "DAMAGE: " + inventory.getKickDamage().ToString();
         unlockKickPriceText.text = unlockKickPrice.ToString();
         upgradeKickPriceText.text = upgradeKickPrice.ToString();
-        currentSwordDamageText.text = "Dano Atual: " + inventory.getSwordDamage().ToString();
+        currentSwordDamageText.text = "DAMAGE: " + inventory.getSwordDamage().ToString();
         unlockSwordPriceText.text = unlockSwordPrice.ToString();
         upgradeSwordPriceText.text = upgradeSwordPrice.ToString();
-        totalHPText.text = "HP Atual: " + inventory.getHealthTotal().ToString();
+        totalHPText.text = "HP: " + inventory.getHealthTotal().ToString();
         ticketPriceText.text = ticketPrice.ToString();
     }
 
@@ -87,19 +87,19 @@ public class StoreController : MonoBehaviour
         if(punchDamage > 0)
         {
             unlockPunchButton.interactable = false;
-            unlockPunchText.text = $"<s>DESBLOQUEAR</s>";
+            unlockPunchText.text = $"<s>UNLOCK</s>";
         }
 
         if(swordDamage > 0)
         {
             unlockSwordButton.interactable = false;
-            unlockSwordText.text = $"<s>DESBLOQUEAR</s>";
+            unlockSwordText.text = $"<s>UNLOCK</s>";
         }
 
         if(kickDamage > 0)
         {
             unlockKickButton.interactable = false;
-            unlockKickText.text = $"<s>DESBLOQUEAR</s>";
+            unlockKickText.text = $"<s>UNLOCK</s>";
         }
     }
 
@@ -123,7 +123,7 @@ public class StoreController : MonoBehaviour
         {
             buy(upgradePunchPrice);
             inventory.addPunchDamage(upgradePunchDamage);
-            currentPunchDamageText.text = "Dano Atual: " + inventory.getPunchDamage().ToString();
+            currentPunchDamageText.text = "DAMAGE: " + inventory.getPunchDamage().ToString();
         }
     }
 
@@ -133,7 +133,7 @@ public class StoreController : MonoBehaviour
         {
             buy(unlockKickPrice);
             inventory.addKickDamage(kickBaseDamage);
-            currentKickDamageText.text = "Dano Atual: " + inventory.getKickDamage().ToString();
+            currentKickDamageText.text = "DAMAGE: " + inventory.getKickDamage().ToString();
             updateUnlockTexts();
             SceneManager.LoadScene(KICK_TUTORIAL_SCENE_BUILD_INDEX);
         }
@@ -145,7 +145,7 @@ public class StoreController : MonoBehaviour
         {
             buy(upgradeKickPrice);
             inventory.addKickDamage(upgradeKickDamage);
-            currentKickDamageText.text = "Dano Atual: " + inventory.getKickDamage().ToString();
+            currentKickDamageText.text = "DAMAGE: " + inventory.getKickDamage().ToString();
         }
     }
 
@@ -155,7 +155,7 @@ public class StoreController : MonoBehaviour
         {
             buy(unlockSwordPrice);
             inventory.addSwordDamage(swordBaseDamage);
-            currentSwordDamageText.text = "Dano Atual: " + inventory.getSwordDamage().ToString();
+            currentSwordDamageText.text = "DAMAGE: " + inventory.getSwordDamage().ToString();
             updateUnlockTexts();
             SceneManager.LoadScene(SWORD_TUTORIAL_SCENE_BUILD_INDEX);
         }
@@ -167,7 +167,7 @@ public class StoreController : MonoBehaviour
         {
             buy(upgradeSwordDamage);
             inventory.addSwordDamage(upgradeSwordDamage);
-            currentSwordDamageText.text = "Dano Atual: " + inventory.getSwordDamage().ToString();
+            currentSwordDamageText.text = "DAMAGE: " + inventory.getSwordDamage().ToString();
         }
     }
 
@@ -177,7 +177,7 @@ public class StoreController : MonoBehaviour
         {
             buy(upgradeHPPrice);
             inventory.addHealthTotal(upgradeHPAmount);
-            totalHPText.text = "HP Atual: " + inventory.getHealthTotal().ToString();
+            totalHPText.text = "HP: " + inventory.getHealthTotal().ToString();
         }
     }
 

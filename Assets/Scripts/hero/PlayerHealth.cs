@@ -101,14 +101,19 @@ public class PlayerHealth : MonoBehaviour
         {
             collider.enabled = false;
         }
+        
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
         playerMovement.enabled = false;
 
         
         LevelManager levelManager = FindObjectOfType<LevelManager>();
-        levelManager.GameOver();
 
-        Destroy(inventory);
+        if (inventory.getAlreadyWatchedAd()){
+            levelManager.GameOver();
+        }
+        else {
+            levelManager.PlayerDied();
+        }
 
         this.enabled = false;
     }

@@ -6,8 +6,9 @@ using TMPro;
 
 public class MenuController : MonoBehaviour
 {
-    private int SKELETON_TUTORIAL_SCENE_BUILD_INDEX = 4;
-    private int STORE_SCENE_BUILD_INDEX = 6;
+    private int GAME_SCENE_BUILD_INDEX = 6;
+    private int STORE_SCENE_BUILD_INDEX = 8;
+    private int WATCH_AD_SCENE_BUILD_INDEX = 15;
 
     [SerializeField]
     private AudioSource audioSource;
@@ -19,7 +20,7 @@ public class MenuController : MonoBehaviour
 
     public void GoToGame()
     {
-        PlaySoundAndLoadScene(SKELETON_TUTORIAL_SCENE_BUILD_INDEX);
+        PlaySoundAndLoadScene(GAME_SCENE_BUILD_INDEX);
     }
 
     public void GoToStore()
@@ -30,6 +31,11 @@ public class MenuController : MonoBehaviour
     public void GoToMenu()
     {
         PlaySoundAndLoadScene(0);
+    }
+
+    public void GoToWatchAd()
+    {
+        PlaySoundAndLoadScene(WATCH_AD_SCENE_BUILD_INDEX);
     }
 
     private void PlaySoundAndLoadScene(int sceneIndex)

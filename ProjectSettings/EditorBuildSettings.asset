@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/You Lose.unity
     guid: 852edc90d3c7f9e40bb6f8b4b0760830
+  - enabled: 1
+    path: Assets/Scenes/Ads.unity
+    guid: a20dcb288375c13488a756a46822f71a
   m_configObjects: {}

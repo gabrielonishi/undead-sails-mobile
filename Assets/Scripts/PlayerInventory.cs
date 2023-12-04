@@ -13,6 +13,7 @@ public class PlayerInventory : MonoBehaviour
 
     private int coinsTotal, currentWave, coinsWon;
     private int kickDamage, swordDamage, healthTotal;
+    private bool alreadyWatchedAd = false;
     private void Awake()
     {
         
@@ -100,5 +101,15 @@ public class PlayerInventory : MonoBehaviour
     public int getCoinsWon()
     {
         return coinsWon;
+    }
+
+    public void watchedAd()
+    {
+        alreadyWatchedAd = true;
+    }
+
+    public bool getAlreadyWatchedAd()
+    {
+        return alreadyWatchedAd;
     }
 }
