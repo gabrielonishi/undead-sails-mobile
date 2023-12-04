@@ -9,8 +9,10 @@ public class loadRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
     private int GAME_SCENE_BUILD_INDEX = 6;
     public string androidAdUnitId;
     public string iosAdUnitId;
-
+    
     string adUnitId;
+
+    PlayerInventory inventory;
 
     void Awake()
     {
@@ -21,7 +23,11 @@ public class loadRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
 #elif UNITY_EDITOR
         adUnitId = androidAdUnitId;
 #endif
+    }
 
+    void Start()
+    {
+        inventory = PlayerInventory.Instance;
     }
 
     public void LoadAd()
@@ -61,11 +67,9 @@ public class loadRewarded : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowL
     {
         print("Rewarded show complete");
         SceneManager.LoadScene(GAME_SCENE_BUILD_INDEX);
+        inventory.watchedAd();
         if (placementId.Equals(adUnitId)&&showCompletionState.Equals(UnityAdsCompletionState.COMPLETED))
         {
-            // print("ENTRAAAAAAAA"); 
-            // print("Rewarded show complete , Distribute the rewards");
-            // SceneManager.LoadScene(GAME_SCENE_BUILD_INDEX);
         }
     }
 
