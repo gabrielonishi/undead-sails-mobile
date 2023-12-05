@@ -24,11 +24,13 @@ public class DevilController : MonoBehaviour
     [SerializeField]
     private Transform shotPoint;
 
+    [SerializeField]
+    private AudioClip loadArrowSound, shootArrowSound;
+
     // Components Outside of GameObject
     private Transform playerTransform;
     private GameObject playerGameObject;
     public GameObject arrow;
-
 
     // In-program Variables
     private Vector2 direction;
@@ -76,6 +78,7 @@ public class DevilController : MonoBehaviour
             {
                 passedTime = 0;
                 animator.SetTrigger("Load");
+                SoundManager.Instance.PlaySound(loadArrowSound);
                 loadingAnimationPlaying = true;
             }
             else
@@ -112,6 +115,8 @@ public class DevilController : MonoBehaviour
         Vector2 requiredVelocity = CalculateVelocityToReachTarget(playerTransform.position, shotPoint.position, launchForce);
 
         newArrow.GetComponent<Rigidbody2D>().velocity = requiredVelocity;
+
+        SoundManager.Instance.PlaySound(shootArrowSound);
 
         StartCoroutine(DestroyArrowAfterTime(newArrow, 4));
 

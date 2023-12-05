@@ -631,6 +631,8 @@ MonoBehaviour:
   launchForce: 9.4
   attackDelay: 1
   shotPoint: {fileID: 278890715714642191}
+  loadArrowSound: {fileID: 8300000, guid: 8b942dfdc491fe94d941477437a5f18a, type: 3}
+  shootArrowSound: {fileID: 8300000, guid: 63e216a1f9c0ebb479156302f8c2b5c9, type: 3}
   arrow: {fileID: 2657802639523056359, guid: 0de018541c593e74b85b9c23e4a79d70, type: 3}
 --- !u!114 &8463315894208511848
 MonoBehaviour:
@@ -644,15 +646,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41a2dfee75bea6a47b8fe9a59a1efb9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: 40253bf2dc7fcfe43ad6cb25584c54a4, type: 3}
+  deathSound: {fileID: 8300000, guid: f7e5899bfa63b7b41aa10c83ced70dbf, type: 3}
   maxHealth: 50
   knockbackDuration: 0.5
   fadeOutTime: 3
   healthBar: {fileID: 376286551591910978}
   coinCanvas: {fileID: 1441458835003427540}
   coinsText: {fileID: 2060953780354718882}
-  enemyObject: {fileID: 6539120517861741720}
 --- !u!1 &6943827919859619773
 GameObject:
   m_ObjectHideFlags: 0
