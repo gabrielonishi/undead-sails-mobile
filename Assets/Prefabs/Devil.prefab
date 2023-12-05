@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 3781929875723585158}
   - component: {fileID: 8533526837739428450}
   - component: {fileID: 972562382099288097}
-  - component: {fileID: 8463315894208511848}
+  - component: {fileID: 6976119280249217409}
   m_Layer: 7
   m_Name: Devil
   m_TagString: Enemy
@@ -634,7 +634,7 @@ MonoBehaviour:
   loadArrowSound: {fileID: 8300000, guid: 8b942dfdc491fe94d941477437a5f18a, type: 3}
   shootArrowSound: {fileID: 8300000, guid: 63e216a1f9c0ebb479156302f8c2b5c9, type: 3}
   arrow: {fileID: 2657802639523056359, guid: 0de018541c593e74b85b9c23e4a79d70, type: 3}
---- !u!114 &8463315894208511848
+--- !u!114 &6976119280249217409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -653,6 +653,7 @@ MonoBehaviour:
   fadeOutTime: 3
   healthBar: {fileID: 376286551591910978}
   coinCanvas: {fileID: 1441458835003427540}
+  isDevil: 1
   coinsText: {fileID: 2060953780354718882}
 --- !u!1 &6943827919859619773
 GameObject:
