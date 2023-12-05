@@ -704,6 +704,7 @@ MonoBehaviour:
   waitTime: 2
   zombie: {fileID: 6539120517861741720, guid: b3e9ebcd7ba7c5a4d8db6eb64ff4a9a9, type: 3}
   skeleton: {fileID: 5234703378776720235, guid: 7955ed57aeaeb3f45b74fee88929e20b, type: 3}
+  devil: {fileID: 6539120517861741720, guid: 2d3b8cb3a52c4cf438e031bbc5d228a6, type: 3}
   playerTransform: {fileID: 468050214}
   kickButton: {fileID: 365378467}
   slashButton: {fileID: 662484171}

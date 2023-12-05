@@ -2034,20 +2034,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSound: {fileID: 1248090461}
   buySound: {fileID: 1006958075}
-  unlockPunchPrice: 2
+  unlockPunchPrice: 0
   upgradePunchPrice: 2
   upgradePunchDamage: 5
   unlockKickPrice: 5
-  kickBaseDamage: 75
-  upgradeKickPrice: 2
+  kickBaseDamage: 50
+  upgradeKickPrice: 3
   upgradeKickDamage: 10
   unlockSwordPrice: 10
-  swordBaseDamage: 50
-  upgradeSwordPrice: 3
+  swordBaseDamage: 35
+  upgradeSwordPrice: 5
   upgradeSwordDamage: 5
-  upgradeHPPrice: 2
+  upgradeHPPrice: 4
   upgradeHPAmount: 10
-  ticketPrice: 100
+  ticketPrice: 150
   coinBalanceText: {fileID: 1755359189}
   currentPunchDamageText: {fileID: 101567266}
   unlockPunchPriceText: {fileID: 1970659027}

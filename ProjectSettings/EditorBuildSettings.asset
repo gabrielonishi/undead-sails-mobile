@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ads.unity
     guid: a20dcb288375c13488a756a46822f71a
+  - enabled: 1
+    path: Assets/Scenes/Devil Tutorial.unity
+    guid: 1c7766cef1f51de449c7c5a507f1c79e
   m_configObjects: {}
