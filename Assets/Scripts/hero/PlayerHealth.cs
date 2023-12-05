@@ -60,7 +60,6 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         healthBar.UpdateHealthBar(currentHealth, maxHealth);
             
-        // Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             animator.SetBool("IsDead", true);
@@ -86,15 +85,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void Dies()
     {
-        // Play the death sound using the SoundManager
-        if (deathSound != null)
-        {
-            SoundManager.Instance.PlaySound(deathSound);
-        }
-        else
-        {
-            Debug.LogError("Death sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(deathSound);
+
 
         Collider2D[] colliders = GetComponents<Collider2D>();
         foreach (Collider2D collider in colliders)

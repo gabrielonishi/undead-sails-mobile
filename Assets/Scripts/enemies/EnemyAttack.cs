@@ -40,7 +40,7 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         float distance = Vector2.Distance(playerTransform.position, transform.position);
-        //Debug.Log(distance);
+
         if (distance <= attackDistanceThreshold && passedTime >= attackDelay)
         {
             passedTime = 0;
@@ -55,14 +55,8 @@ public class EnemyAttack : MonoBehaviour
 
     private void Attack()
     {
-        if (attackSound != null)
-        {
-            SoundManager.Instance.PlaySound(attackSound);
-        }
-        else
-        {
-            Debug.LogError("Attack sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(attackSound);
 
         animator.SetTrigger("Attack");
         punchAnimator.SetTrigger("Punch");

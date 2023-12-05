@@ -55,14 +55,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (damageSound != null)
-        {
-            SoundManager.Instance.PlaySound(damageSound);
-        }
-        else
-        {
-            Debug.LogError("Damage sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(damageSound);
 
         animator.SetTrigger("Hurt");
         currentHealth -= damage;
@@ -103,14 +97,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void Dies()
     {
-        if (deathSound != null)
-        {
-            SoundManager.Instance.PlaySound(deathSound);
-        }
-        else
-        {
-            Debug.LogError("Death sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(deathSound);
 
         levelManager.enemyDied(coinsDropped);
         coinCanvas.gameObject.SetActive(true);
@@ -127,7 +115,6 @@ public class EnemyHealth : MonoBehaviour
         enemyMovement.enabled = false;
 
         StartCoroutine(FadeOutTimer());
-        Debug.Log("Enemy Died");
     }
 
     private IEnumerator FadeOutTimer()

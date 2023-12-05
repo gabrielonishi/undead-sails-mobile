@@ -211,7 +211,6 @@ public class StoreController : MonoBehaviour
 
     private IEnumerator PlaySoundAndLoadSceneCoroutine(int sceneIndex)
     {
-        Debug.Log("Entra");
         clickSound.Play();
 
         // Wait for the audio clip to finish playing

@@ -102,14 +102,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Punch()
     {
-        if (punchSound != null)
-        {
-            SoundManager.Instance.PlaySound(punchSound);
-        }
-        else
-        {
-            Debug.LogError("Punch sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(punchSound);
 
         lastPunchTime = Time.time;
         animator.SetTrigger("Punch");
@@ -139,14 +133,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Kick()
     {
-        if (kickSound != null)
-        {
-            SoundManager.Instance.PlaySound(kickSound);
-        }
-        else
-        {
-            Debug.LogError("Kick sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(kickSound);
 
         lastKickTime = Time.time;
         animator.SetTrigger("Kick");
@@ -174,14 +162,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Sword()
     {
-        if (swordSound != null)
-        {
-            SoundManager.Instance.PlaySound(swordSound);
-        }
-        else
-        {
-            Debug.LogError("Sword sound not set");
-        }
+
+        SoundManager.Instance.PlaySound(swordSound);
+
 
         lastSwordTime = Time.time;
         animator.SetTrigger("Sword");
